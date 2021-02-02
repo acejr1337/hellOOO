@@ -1,5 +1,6 @@
 package cc.hazo.development.hellooo.gui;
 
+import cc.hazo.development.hellooo.util.SoundStream;
 import cc.hazo.development.hellooo.util.Sounds;
 
 import javax.swing.*;
@@ -31,6 +32,5 @@ public class HelloooGraphicalUserInterface extends JFrame {
         jframe.setVisible(true);
 
         Sounds.HELLOOO.getSoundStream().get().playSound();
-
     }
 }

@@ -2,7 +2,7 @@ package cc.hazo.development.hellooo.util;
 
 import lombok.NonNull;
 
-public enum Sounds {
+public enum Sounds implements ISound{
 
     /**
      * Made by Chace: 2/02/2021
@@ -21,5 +21,20 @@ public enum Sounds {
 
     public @NonNull ThreadLocal<SoundStream> getSoundStream() {
         return soundStream;
+    }
+
+    @Override
+    public void play() {
+        soundStream.get().playSound();
+    }
+
+    @Override
+    public void stop() {
+        soundStream.get().stopAudioClip();
+    }
+
+    @Override
+    public float getVolume() {
+        return soundStream.get().getVolume();
     }
 }

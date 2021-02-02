@@ -1,11 +1,8 @@
 package cc.hazo.development.hellooo.gui;
 
-import cc.hazo.development.hellooo.HellooooMain;
-import cc.hazo.development.hellooo.util.SoundStream;
 import cc.hazo.development.hellooo.util.Sounds;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class HelloooGraphicalUserInterface extends JFrame {
 
@@ -17,14 +14,11 @@ public class HelloooGraphicalUserInterface extends JFrame {
      */
 
     // i love talkking to myself in code its fun whjen i am bored, hi josh.
-    private HellooooMain hellooooMain;
-    private SoundStream soundStream;
+
     public HelloooGraphicalUserInterface() {
         super("hellOOO");
 
         final JFrame jframe = this;
-
-        Sounds.HELLOOO.getSoundStream().playSound();
 
         jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -32,18 +26,11 @@ public class HelloooGraphicalUserInterface extends JFrame {
 
         jframe.setTitle("heLLoOO.exe - 3 0 s");
 
+        jframe.setSize(900,600);
+
         jframe.setVisible(true);
 
-        jframe.setSize(50,50);
+        Sounds.HELLOOO.getSoundStream().get().playSound();
 
-        jframe.repaint();
-    }
-
-    public void frameInit() {
-        super.frameInit();
-    }
-
-    public static void initializeClass() {
-        new HelloooGraphicalUserInterface();
     }
 }

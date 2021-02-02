@@ -19,12 +19,12 @@ public class SoundStream {
      * Class: SoundStream
      */
 
-    private URL mediaFileLocation;
+    private String mediaFileLocation;
     private Clip clip;
     private AudioInputStream inputStream;
 
     @SneakyThrows
-    public SoundStream(URL mediaFileLocation) {
+    public SoundStream(String mediaFileLocation) {
         this.mediaFileLocation = mediaFileLocation;
         this.clip = AudioSystem.getClip();
     }
@@ -32,20 +32,11 @@ public class SoundStream {
     public synchronized void playSound() {
         new Thread(() -> {
                 try {
-                    inputStream = AudioSystem.getAudioInputStream(SoundStream.class.getResource("/" + mediaFileLocation));
+                    inputStream = AudioSystem.getAudioInputStream(SoundStream.class.getResource("/resources/sounds/" + mediaFileLocation));
                     clip.open(inputStream);
-                    setVolume(Float.valueOf(getVolume()/20));
                     clip.start();
                 } catch (Exception e) {
                     return;
-                } finally {
-                    this.clip.close();
-                    try {
-                        this.inputStream.close();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    this.clip.flush();
                 }
         }).start();
     }
@@ -70,7 +61,7 @@ public class SoundStream {
 
     @NonNull
     protected static final ThreadLocal<SoundStream> SOUND_HELLOOO = ThreadLocal.withInitial(() -> {
-            return new SoundStream(thisClazz.getClass().getResource("/resources/sounds/hellooo.wav"));
+            return new SoundStream("hellooo.wav");
     });
 
 }

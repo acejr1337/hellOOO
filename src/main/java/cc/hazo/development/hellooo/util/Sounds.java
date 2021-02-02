@@ -1,5 +1,7 @@
 package cc.hazo.development.hellooo.util;
 
+import lombok.NonNull;
+
 public enum Sounds {
 
     /**
@@ -11,13 +13,13 @@ public enum Sounds {
 
     HELLOOO(SoundStream.SOUND_HELLOOO);
 
-    private SoundStream soundStream;
+    private @NonNull ThreadLocal<SoundStream> soundStream;
 
-    Sounds(SoundStream soundStream) {
+    Sounds(@NonNull ThreadLocal<SoundStream> soundStream) {
         this.soundStream = soundStream;
     }
 
-    public SoundStream getSoundStream() {
+    public @NonNull ThreadLocal<SoundStream> getSoundStream() {
         return soundStream;
     }
 }

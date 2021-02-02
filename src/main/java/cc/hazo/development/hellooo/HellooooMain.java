@@ -1,6 +1,7 @@
 package cc.hazo.development.hellooo;
 
 import cc.hazo.development.hellooo.gui.HelloooGraphicalUserInterface;
+import cc.hazo.development.hellooo.util.Sounds;
 
 import java.awt.*;
 
@@ -16,10 +17,11 @@ public class HellooooMain {
     public static HellooooMain thisClazz;
 
     public static void main(String[] args) {
+
         thisClazz = new HellooooMain();
 
         EventQueue.invokeLater(() -> {
-            HelloooGraphicalUserInterface.initializeClass();
+            new HelloooGraphicalUserInterface();
         });
     }
 

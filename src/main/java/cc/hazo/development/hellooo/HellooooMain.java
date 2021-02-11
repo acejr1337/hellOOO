@@ -1,9 +1,10 @@
 package cc.hazo.development.hellooo;
 
 import cc.hazo.development.hellooo.gui.HelloooGraphicalUserInterface;
-import cc.hazo.development.hellooo.util.Sounds;
 
+import javax.sound.sampled.LineUnavailableException;
 import java.awt.*;
+import java.io.IOException;
 
 public class HellooooMain {
 
@@ -20,8 +21,9 @@ public class HellooooMain {
 
         thisClazz = new HellooooMain();
 
+
         EventQueue.invokeLater(() -> {
-            new HelloooGraphicalUserInterface();
+                new HelloooGraphicalUserInterface();
         });
     }
 

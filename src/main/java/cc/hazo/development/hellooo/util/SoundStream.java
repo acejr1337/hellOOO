@@ -32,7 +32,7 @@ public class SoundStream {
     public synchronized void playSound() {
         new Thread(() -> {
                 try {
-                    inputStream = AudioSystem.getAudioInputStream(SoundStream.class.getResource("/resources/sounds/" + mediaFileLocation));
+                    inputStream = AudioSystem.getAudioInputStream(SoundStream.class.getResource("/sounds/" + mediaFileLocation));
                     clip.open(inputStream);
                     clip.start();
                 } catch (Exception e) {
@@ -63,5 +63,24 @@ public class SoundStream {
     protected static final ThreadLocal<SoundStream> SOUND_HELLOOO = ThreadLocal.withInitial(() -> {
             return new SoundStream("hellooo.wav");
     });
+
+    public static synchronized void playSound(final String url) {
+        new Thread(new Runnable() {
+            // The wrapper thread is unnecessary, unless it blocks on the
+            // Clip finishing; see comments.
+            public void run() {
+                Clip clip;
+                AudioInputStream inputStream;
+                try {
+                    clip = AudioSystem.getClip();
+                    inputStream = AudioSystem.getAudioInputStream(SoundStream.class.getResource("/sounds/" + url));
+                    clip.open(inputStream);
+                    clip.start();
+                } catch (Exception e) {
+                    return;
+                }
+            }
+        }).start();
+    }
 
 }
